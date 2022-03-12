@@ -16,7 +16,7 @@ const PlayerList = () => {
   const handleUserKeyPress = event => {
     const { key, keyCode } = event;
     if (keyCode === 116) {
-       // navigate("/gameScreen");
+       navigate("/gameScreen");
     }
   };
 
