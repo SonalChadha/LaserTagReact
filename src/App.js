@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route index element={<SpashScreen />} />
           <Route path="/playerEntryScreen" element={<PlayerList />} />
-          //<Route path="/gameScreen" element={<GameScreen />} />
+         
           <Route path="/editRedPlayer/:id" element={<UpdateRedPlayer />} />
           <Route path="/editGreenPlayer/:id" element={<UpdateGreenPlayer />} />
         </Routes>
