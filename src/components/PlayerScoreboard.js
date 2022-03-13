@@ -14,7 +14,7 @@ const PlayerScoreBoard = () => {
   const navigate = useNavigate();
   //let hj = "";
   const handleUserKeyPress = event => {
-    const { key, keyCode } = event;
+    const { keyCode } = event;
     if (keyCode === 116) {
         navigate("/gameScreen");
     }
