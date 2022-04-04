@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import PlayerScoreBoard from './PlayerScoreboard';
-
+import {over} from 'stompjs';
+import SockJS from 'sockjs-client';
+var stompClient =null;
+//var Sock = null;
 const GameScreen = () => {
-  const [countdown, setCountdown] = useState(30)
+  const [countdown, setCountdown] = useState(3)
   const [switchDisplay, setSwitchDisplay] = useState(false)
   const [display, setDisplay] = useState(true)
+  
+  const [whoHITwho, setWhoHITwho] = useState()
   
   useEffect(() => {
       // Decrements timer and waits one second
@@ -12,9 +17,10 @@ const GameScreen = () => {
         const timer = setInterval(() => {
           setCountdown(countdown - 1)
         }, 1000)
-        return () => clearInterval(timer)
+        return () => {
+          clearInterval(timer)
+        }
       }
-
       // Switch to gameplay timer
       if(countdown === 0 && display) {
         setDisplay(false)
@@ -27,8 +33,39 @@ const GameScreen = () => {
         setSwitchDisplay(false)
         setCountdown(0)
       }
-
   }, [countdown, display, switchDisplay])
+
+  useEffect(() => {
+      var Sock = new SockJS('http://127.0.0.1:8080/ws');
+      //console.log("Sock works");
+      stompClient = over(Sock);
+      stompClient.connect({},onConnected, onError);
+
+      return () => {
+        //setWhoHITwho("null")
+        Sock.close();
+        //setWhoHITwho("null")
+        //setWhoHITwho(JSON.stringify(null))
+      }
+  })
+
+  const onConnected = () => {
+    stompClient.subscribe('/chatroom/public', onMessageReceived);
+    var dummyMessage = {};
+    stompClient.send("/app/message", {}, JSON.stringify(dummyMessage));
+  }
+
+  const onMessageReceived = (payload)=>{
+    var payloadData = JSON.parse(payload.body);
+    console.log(JSON.stringify(payloadData["message"]))
+    //if(Object.values(JSON.stringify(payloadData["message"])).length !== 4)
+      setWhoHITwho(JSON.stringify(payloadData["message"]));
+    console.log(JSON.stringify(payloadData["message"]));
+  }
+
+  const onError = (err) => {
+    console.log(err);
+  }
 
   // Show get ready timer
   if (display) {
@@ -43,6 +80,7 @@ const GameScreen = () => {
               {countdown%60 < 10 ?
               "0" + countdown%60 : countdown%60}
               </p>
+              
               <br />
             </h1>
           </div>
@@ -63,11 +101,13 @@ const GameScreen = () => {
                 {countdown%60 < 10 ?
                 "0" + countdown%60 : countdown%60}
               </p>
+              <h1>{whoHITwho}</h1>
               <br />
           </h1>
         </div>
       </div>
-      <PlayerScoreBoard/>
+      <PlayerScoreBoard hitDATA = {whoHITwho}/>
+      
       </>)
   }
 }

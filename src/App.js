@@ -5,18 +5,20 @@ import Navbar from "./components/Navbar";
 import UpdateRedPlayer from "./components/UpdateRedPlayer";
 import UpdateGreenPlayer from "./components/UpdateGreenPlayer";
 import GameScreen from "./components/GameScreen";
-import SpashScreen from "./components/SplashScreen";
+import SplashScreen from "./components/SplashScreen";
+import Chat from "./components/Chat";
 
 function App() {
     return(
        <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route index element={<SpashScreen />} />
+          <Route index element={<SplashScreen />} />
           <Route path="/playerEntryScreen" element={<PlayerList />} />
           <Route path="/gameScreen" element={<GameScreen />} />
           <Route path="/editRedPlayer/:id" element={<UpdateRedPlayer />} />
           <Route path="/editGreenPlayer/:id" element={<UpdateGreenPlayer />} />
+          {/*<Route path="/test" element={<Chat />} />*/}
         </Routes>
       </BrowserRouter>
     );

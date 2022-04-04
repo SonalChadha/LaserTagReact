@@ -1,12 +1,23 @@
-import React from "react";
-//import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
-const GreenPlayerScore = ({ player, deletePlayer }) => {
-//   const navigate = useNavigate();
-//   const editPlayer = (e, id) => {
-//     e.preventDefault();
-//     navigate(`/editGreenPlayer/${id}`);
-//   };
+const GreenPlayerScore = ({ player, hits }) => {
+  const [currGreenScore, setCurrGreenScore] = useState(0)
+
+  useEffect(() => {
+    if(String(Object.values(hits)).includes(":")) {
+    var numberPattern = /\d+/g;
+
+    var transmitNumber = String(Object.values(hits)).match(numberPattern)[0];
+
+    var hitNumber = String(Object.values(hits)).match(numberPattern)[1];
+    if(player.id === parseInt(transmitNumber)) {
+      setCurrGreenScore(currGreenScore + 10)
+    }
+    else if(player.id === parseInt(hitNumber) && currGreenScore >= 10) {
+      setCurrGreenScore(currGreenScore - 10)
+    }
+  }
+  }, [hits])
 
   return (
     <tr key={player.id}>
@@ -17,16 +28,7 @@ const GreenPlayerScore = ({ player, deletePlayer }) => {
         <div className="text-sm text-gray-900">{player.codeValue}</div>
       </td>
       <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
-        {/* <a
-          onClick={(e, id) => editPlayer(e, player.id)}
-          className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer">
-          Edit
-        </a>
-        <a
-          onClick={(e, id) => deletePlayer(e, player.id)}
-          className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer">
-          Delete
-        </a> */}
+        <div className="text-sm text-gray-900">{currGreenScore}</div>
       </td>
     </tr>
   );

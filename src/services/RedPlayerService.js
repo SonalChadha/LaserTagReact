@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const RED_PLAYER_API_BASE_URL = "https://team8lasertagbackend.herokuapp.com/api/v1/redTeam";
+const RED_PLAYER_API_BASE_URL = "http://127.0.0.1:8080/api/v1/redTeam";
 
 class RedPlayerService {
   savePlayer(player) {

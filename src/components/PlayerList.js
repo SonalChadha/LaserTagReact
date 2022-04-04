@@ -12,7 +12,7 @@ const PlayerList = () => {
   const [redPlayers, setRedPlayers] = useState(null);
   const [greenPlayers, setGreenPlayers] = useState(null);
   const navigate = useNavigate();
-  //let hj = "";
+  
   const handleUserKeyPress = event => {
     const { key, keyCode } = event;
     if (keyCode === 116) {
@@ -65,7 +65,6 @@ const PlayerList = () => {
         }); 
       }
     });
-    //console.log(hj)
   };
 
   const deleteGreenPlayer = (e, id) => {
@@ -92,9 +91,6 @@ const PlayerList = () => {
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
               </th>
-              {/* <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
-                Last Name
-              </th> */}
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 Code Value
               </th>
@@ -120,9 +116,6 @@ const PlayerList = () => {
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
               </th>
-              {/* <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
-                Last Name
-              </th> */}
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 Code Value
               </th>
