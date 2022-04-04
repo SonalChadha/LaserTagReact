@@ -3,7 +3,7 @@ import GreenPlayerService from "../services/GreenPlayerService";
 
 const AddGreenPlayer = () => {
   const [player, setPlayer] = useState({
-    id:0, 
+    id:16, 
     codeValue:""
   });
 
@@ -14,6 +14,8 @@ const AddGreenPlayer = () => {
 
   const savePlayer = (e) => {
     e.preventDefault();
+    if(player.id < 16 || player.id > 30)
+      return
     if(player.codeValue === "")
       player.codeValue = "JohnDoe0123"
     GreenPlayerService.savePlayer(player)
@@ -35,18 +37,22 @@ const AddGreenPlayer = () => {
   };
 
   return (
+
     <div className="inline-flex px-10 w-1/2 shadow border-b">
+
       <div>
         <div className="space-x-2"> 
           <label className="text-gray-600 text-sm font-normal">
-            ID
+            ID (16-30)
           </label>
           <input
             type="number"
             name="id"
             value={player.id}
             onChange={(e) => handleChange(e)}
-            className="h-6 w-50 border mt-2 px-2 py-2"></input>
+            className="h-6 w-50 border mt-2 px-2 py-2"
+            min="16"
+            max="30"></input>
         </div>
         <div className="space-x-2">
           <label className="text-gray-600 text-sm font-normal">
@@ -74,6 +80,7 @@ const AddGreenPlayer = () => {
 
         <div className="mx-20 h-14 my-4 space-x-14 pt-4">
         <button
+          type="submit"
           onClick={savePlayer}
           className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6">
           Save
