@@ -3,7 +3,7 @@ import RedPlayerService from "../services/RedPlayerService";
 
 const AddRedPlayer = () => {
   const [player, setPlayer] = useState({
-    id:0, 
+    id:1, 
     codeValue:""
   });  
 
@@ -14,6 +14,8 @@ const AddRedPlayer = () => {
 
   const savePlayer = (e) => {
     e.preventDefault();
+    if(player.id < 1 || player.id > 15)
+      return
     if(player.codeValue === "")
       player.codeValue = "JohnDoe0123"
     RedPlayerService.savePlayer(player)
@@ -35,20 +37,22 @@ const AddRedPlayer = () => {
   };
 
   return (
-    
+
     <div className="inline-flex px-10 w-1/2 shadow border-b">
       
       <div>
         <div className="space-x-2"> 
           <label className="text-gray-600 text-sm font-normal">
-            ID 
+            ID (1-15)
           </label>
           <input
             type="number"
             name="id"
             value={player.id}
             onChange={(e) => handleChange(e)}
-            className="h-6 w-50 border mt-2 px-2 py-2"></input>
+            className="h-6 w-50 border mt-2 px-2 py-2"
+            min="1"
+            max="15"></input>
         </div>
         <div className="space-x-2">
           <label className="text-gray-600 text-sm font-normal">
@@ -75,6 +79,7 @@ const AddRedPlayer = () => {
 
         <div className="mx-20 h-14 my-4 space-x-14 pt-4">
         <button
+          type="submit"
           onClick={savePlayer}
           className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6">
           Save
