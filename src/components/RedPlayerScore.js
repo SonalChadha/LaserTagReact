@@ -3,9 +3,7 @@ const RedPlayerScore = ({ player, hits }) => {
   const [currRedScore, setCurrRedScore] = useState(0)
 
   useEffect(() => {
-    //console.log(String(Object.values(hits)))
     if(String(Object.values(hits)).includes(":")) {
-      console.log("I entered to line 9")
       var numberPattern = /\d+/g;
 
       var transmitNumber = String(Object.values(hits)).match(numberPattern)[0];
@@ -22,7 +20,6 @@ const RedPlayerScore = ({ player, hits }) => {
 
   return (
     <div>
-    {/*<p>{Object.values(hits)}</p>*/}
     <tr key={player.id}>
       <td className="text-left px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{player.id}</div>

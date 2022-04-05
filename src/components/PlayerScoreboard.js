@@ -29,7 +29,6 @@ const PlayerScoreBoard = (hitDATA) => {
   });
 
   useEffect(() => {
-   // console.log("suck a" + Object.values(hitDATA));
     const fetchData = async () => {
       setRedLoading(true);
       try {
@@ -60,8 +59,6 @@ const PlayerScoreBoard = (hitDATA) => {
 
   return (
     <div className="container mx-auto my-5">
-      
-    <p>{/*Object.values(hitDATA)*/}</p>
       <div className="flex shadow border-b">
         <table className="min-w-[50%]">
           <thead className="bg-red-400" >

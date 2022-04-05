@@ -65,18 +65,6 @@ const AddRedPlayer = () => {
             onChange={(e) => handleChange(e)}
             className="h-6 w-50 border mt-2 px-2 py-2" placeholder="JohnDoe0123"></input>
         </div>
-        {/* <div className="space-x-2">
-          <label className="text-gray-600 text-sm font-normal">
-            Email
-          </label>
-          <input
-            type="email"
-            name="emailId"
-            value={player.emailId}
-            onChange={(e) => handleChange(e)}
-            className="h-6 w-96 border mt-2 px-2 py-2"></input>
-        </div> */}
-
         <div className="mx-20 h-14 my-4 space-x-14 pt-4">
         <button
           type="submit"

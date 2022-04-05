@@ -3,7 +3,6 @@ import PlayerScoreBoard from './PlayerScoreboard';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 var stompClient =null;
-//var Sock = null;
 const GameScreen = () => {
   const [countdown, setCountdown] = useState(3)
   const [switchDisplay, setSwitchDisplay] = useState(false)
@@ -37,15 +36,11 @@ const GameScreen = () => {
 
   useEffect(() => {
       var Sock = new SockJS('http://127.0.0.1:8080/ws');
-      //console.log("Sock works");
       stompClient = over(Sock);
       stompClient.connect({},onConnected, onError);
 
       return () => {
-        //setWhoHITwho("null")
         Sock.close();
-        //setWhoHITwho("null")
-        //setWhoHITwho(JSON.stringify(null))
       }
   })
 
@@ -57,10 +52,8 @@ const GameScreen = () => {
 
   const onMessageReceived = (payload)=>{
     var payloadData = JSON.parse(payload.body);
-    console.log(JSON.stringify(payloadData["message"]))
-    //if(Object.values(JSON.stringify(payloadData["message"])).length !== 4)
-      setWhoHITwho(JSON.stringify(payloadData["message"]));
-    console.log(JSON.stringify(payloadData["message"]));
+    //console.log(JSON.stringify(payloadData["message"]))
+    setWhoHITwho(JSON.stringify(payloadData["message"]));
   }
 
   const onError = (err) => {
@@ -101,7 +94,6 @@ const GameScreen = () => {
                 {countdown%60 < 10 ?
                 "0" + countdown%60 : countdown%60}
               </p>
-              <h1>{whoHITwho}</h1>
               <br />
           </h1>
         </div>
