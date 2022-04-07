@@ -4,7 +4,7 @@ import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 var stompClient =null;
 const GameScreen = () => {
-  const [countdown, setCountdown] = useState(3)
+  const [countdown, setCountdown] = useState(30)
   const [switchDisplay, setSwitchDisplay] = useState(false)
   const [display, setDisplay] = useState(true)
   

@@ -19,7 +19,6 @@ const RedPlayerScore = ({ player, hits }) => {
   }, [hits])
 
   return (
-    <div>
     <tr key={player.id}>
       <td className="text-left px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{player.id}</div>
@@ -32,7 +31,6 @@ const RedPlayerScore = ({ player, hits }) => {
         <div className="text-sm text-gray-900">{currRedScore}</div>
       </td>
     </tr>
-    </div>
   );
 };
 

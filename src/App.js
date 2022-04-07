@@ -6,7 +6,6 @@ import UpdateRedPlayer from "./components/UpdateRedPlayer";
 import UpdateGreenPlayer from "./components/UpdateGreenPlayer";
 import GameScreen from "./components/GameScreen";
 import SplashScreen from "./components/SplashScreen";
-import Chat from "./components/Chat";
 
 function App() {
     return(
@@ -18,7 +17,6 @@ function App() {
           <Route path="/gameScreen" element={<GameScreen />} />
           <Route path="/editRedPlayer/:id" element={<UpdateRedPlayer />} />
           <Route path="/editGreenPlayer/:id" element={<UpdateGreenPlayer />} />
-          {/*<Route path="/test" element={<Chat />} />*/}
         </Routes>
       </BrowserRouter>
     );

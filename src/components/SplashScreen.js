@@ -15,7 +15,7 @@ function SpashScreen() {
     
     return ( 
         loading ?
-        <img className="m-auto" src = {logo} width={window.outerWidth/1.45} height={window.outerHeight} 
+        <img className="m-auto" src = {logo} width={window.outerWidth} height={window.outerHeight} 
         loading={loading} alt="Splash Screen" />
         : <>{navigate("/playerEntryScreen")}</>
         
