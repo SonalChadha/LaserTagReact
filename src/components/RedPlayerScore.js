@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-const RedPlayerScore = ({ player, hits }) => {
+
+const RedPlayerScore = ({ player, hits, changeTotalScore }) => {
   const [currRedScore, setCurrRedScore] = useState(0)
 
   useEffect(() => {
@@ -11,9 +12,11 @@ const RedPlayerScore = ({ player, hits }) => {
       var hitNumber = String(Object.values(hits)).match(numberPattern)[1];
       if(player.id === parseInt(transmitNumber)) {
         setCurrRedScore(currRedScore + 10)
+        changeTotalScore(10)
       }
       else if(player.id === parseInt(hitNumber) && currRedScore >= 10) {
         setCurrRedScore(currRedScore - 10)
+        changeTotalScore(-10)
       }
     }
   }, [hits])
@@ -26,7 +29,6 @@ const RedPlayerScore = ({ player, hits }) => {
       <td className="text-left px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{player.codeValue}</div>
       </td>
-      
       <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
         <div className="text-sm text-gray-900">{currRedScore}</div>
       </td>

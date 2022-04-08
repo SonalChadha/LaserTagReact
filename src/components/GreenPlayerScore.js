@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-const GreenPlayerScore = ({ player, hits }) => {
+const GreenPlayerScore = ({ player, hits, changeTotalScore}) => {
   const [currGreenScore, setCurrGreenScore] = useState(0)
 
   useEffect(() => {
     if(String(Object.values(hits)).includes(":")) {
-    var numberPattern = /\d+/g;
+      var numberPattern = /\d+/g;
 
-    var transmitNumber = String(Object.values(hits)).match(numberPattern)[0];
+      var transmitNumber = String(Object.values(hits)).match(numberPattern)[0];
 
-    var hitNumber = String(Object.values(hits)).match(numberPattern)[1];
-    if(player.id === parseInt(transmitNumber)) {
-      setCurrGreenScore(currGreenScore + 10)
+      var hitNumber = String(Object.values(hits)).match(numberPattern)[1];
+      if(player.id === parseInt(transmitNumber)) {
+        setCurrGreenScore(currGreenScore + 10)
+        changeTotalScore(10)
+      }
+      else if(player.id === parseInt(hitNumber) && currGreenScore >= 10) {
+        setCurrGreenScore(currGreenScore - 10)
+        changeTotalScore(-10)
+      }
     }
-    else if(player.id === parseInt(hitNumber) && currGreenScore >= 10) {
-      setCurrGreenScore(currGreenScore - 10)
-    }
-  }
   }, [hits])
 
   return (
