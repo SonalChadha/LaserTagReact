@@ -3,16 +3,17 @@ import RedPlayerService from "../services/RedPlayerService";
 import GreenPlayerService from "../services/GreenPlayerService";
 import RedPlayerScore from "./RedPlayerScore";
 import GreenPlayerScore from "./GreenPlayerScore";
-// import AddRedPlayer from "./AddRedPlayer";
-// import AddGreenPlayer from "./AddGreenPlayer";
 import { useNavigate } from "react-router-dom";
-const PlayerScoreBoard = () => {
+
+
+var stompClient =null;
+const PlayerScoreBoard = (hitDATA) => {
   const [redLoading, setRedLoading] = useState(true);
   const [greenLoading, setGreenLoading] = useState(true);
   const [redPlayers, setRedPlayers] = useState(null);
   const [greenPlayers, setGreenPlayers] = useState(null);
   const navigate = useNavigate();
-  //let hj = "";
+  
   const handleUserKeyPress = event => {
     const { keyCode } = event;
     if (keyCode === 116) {
@@ -56,27 +57,12 @@ const PlayerScoreBoard = () => {
     fetchData();
   }, []);
 
-  const deleteRedPlayer = (e, id) => {
-    e.preventDefault();
-    RedPlayerService.deletePlayer(id).then((res) => {
-      if (redPlayers) {
-        setRedPlayers((prevElement) => {
-          return prevElement.filter((player) => player.id !== id);
-        }); 
-      }
-    });
-    //console.log(hj)
+  const changeTotalGreenScore = (changeByHowMuch) => {
+    setTotalGreenScore(totalGreenScore + changeByHowMuch)
   };
 
-  const deleteGreenPlayer = (e, id) => {
-    e.preventDefault();
-    GreenPlayerService.deletePlayer(id).then((res) => {
-      if (greenPlayers) {
-        setGreenPlayers((prevElement) => {
-          return prevElement.filter((player) => player.id !== id);
-        }); 
-      }
-    });
+  const changeTotalRedScore = (changeByHowMuch) => {
+    setTotalRedScore(totalRedScore + changeByHowMuch)
   };
 
   return (
@@ -88,9 +74,6 @@ const PlayerScoreBoard = () => {
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
               </th>
-              {/* <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
-                Last Name
-              </th> */}
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 Code Value
               </th>
@@ -104,21 +87,22 @@ const PlayerScoreBoard = () => {
               {redPlayers.map((player) => (
                 <RedPlayerScore
                   player={player}
-                  deletePlayer={deleteRedPlayer}
-                  key={player.id}></RedPlayerScore>
+                  key={player.id}
+                  hits={hitDATA} 
+                  changeTotalScore={changeTotalRedScore}>
+                  </RedPlayerScore>
               ))}
             </tbody>
+            
           )}
         </table>
+     
         <table className="min-w-[50%]">
           <thead className="bg-green-400">
             <tr>
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
               </th>
-              {/* <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
-                Last Name
-              </th> */}
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 Code Value
               </th>
@@ -130,10 +114,12 @@ const PlayerScoreBoard = () => {
           {!greenLoading && (
             <tbody className="bg-green-200">
               {greenPlayers.map((player) => (
+                
                 <GreenPlayerScore
                   player={player}
-                  deletePlayer={deleteGreenPlayer}
-                  key={player.id}></GreenPlayerScore>
+                  key={player.id} 
+                  hits={hitDATA} 
+                  changeTotalScore={changeTotalGreenScore}></GreenPlayerScore>
               ))}
             </tbody>
           )}
