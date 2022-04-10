@@ -35,7 +35,7 @@ const GameScreen = () => {
   }, [countdown, display, switchDisplay])
 
   useEffect(() => {
-      var Sock = new SockJS('http://127.0.0.1:8080/ws');
+      var Sock = new SockJS('http://127.0.0.1:7500/ws');
       stompClient = over(Sock);
       stompClient.connect({},onConnected, onError);
 
@@ -45,7 +45,7 @@ const GameScreen = () => {
   })
 
   const onConnected = () => {
-    stompClient.subscribe('/chatroom/public', onMessageReceived);
+    stompClient.subscribe('/room/public', onMessageReceived);
     var dummyMessage = {};
     stompClient.send("/app/message", {}, JSON.stringify(dummyMessage));
   }

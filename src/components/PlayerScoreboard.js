@@ -5,13 +5,13 @@ import RedPlayerScore from "./RedPlayerScore";
 import GreenPlayerScore from "./GreenPlayerScore";
 import { useNavigate } from "react-router-dom";
 
-
-var stompClient =null;
 const PlayerScoreBoard = (hitDATA) => {
   const [redLoading, setRedLoading] = useState(true);
   const [greenLoading, setGreenLoading] = useState(true);
   const [redPlayers, setRedPlayers] = useState(null);
   const [greenPlayers, setGreenPlayers] = useState(null);
+  const [totalRedScore, setTotalRedScore] = useState(0);
+  const [totalGreenScore, setTotalGreenScore] = useState(0);
   const navigate = useNavigate();
   
   const handleUserKeyPress = event => {
