@@ -57,6 +57,14 @@ const PlayerScoreBoard = (hitDATA) => {
     fetchData();
   }, []);
 
+  const changeTotalGreenScore = (changeByHowMuch) => {
+    setTotalGreenScore(totalGreenScore + changeByHowMuch)
+  };
+
+  const changeTotalRedScore = (changeByHowMuch) => {
+    setTotalRedScore(totalRedScore + changeByHowMuch)
+  };
+
   return (
     <div className="container mx-auto my-5">
       <div className="flex shadow border-b">
@@ -80,7 +88,8 @@ const PlayerScoreBoard = (hitDATA) => {
                 <RedPlayerScore
                   player={player}
                   key={player.id}
-                  hits={hitDATA} >
+                  hits={hitDATA} 
+                  changeTotalScore={changeTotalRedScore}>
                   </RedPlayerScore>
               ))}
             </tbody>
@@ -109,7 +118,8 @@ const PlayerScoreBoard = (hitDATA) => {
                 <GreenPlayerScore
                   player={player}
                   key={player.id} 
-                  hits={hitDATA} ></GreenPlayerScore>
+                  hits={hitDATA} 
+                  changeTotalScore={changeTotalGreenScore}></GreenPlayerScore>
               ))}
             </tbody>
           )}
