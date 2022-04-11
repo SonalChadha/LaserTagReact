@@ -12,6 +12,8 @@ const PlayerScoreBoard = (hitDATA) => {
   const [greenPlayers, setGreenPlayers] = useState(null);
   const [totalRedScore, setTotalRedScore] = useState(0);
   const [totalGreenScore, setTotalGreenScore] = useState(0);
+  const [playerTransmitting, setPlayerTransmitting] = useState();
+  const [playerHit, setPlayerHit] = useState();
   const navigate = useNavigate();
   
   const handleUserKeyPress = event => {
@@ -57,6 +59,14 @@ const PlayerScoreBoard = (hitDATA) => {
     fetchData();
   }, []);
 
+  const changePlayerTransmitting = (nameOfPlayerTrans) => {
+    setPlayerTransmitting(nameOfPlayerTrans)
+  };
+
+  const changePlayerHit = (nameOfPlayerHit) => {
+    setPlayerHit(nameOfPlayerHit)
+  };
+
   const changeTotalGreenScore = (changeByHowMuch) => {
     setTotalGreenScore(totalGreenScore + changeByHowMuch)
   };
@@ -67,9 +77,12 @@ const PlayerScoreBoard = (hitDATA) => {
 
   return (
     <div className="container mx-auto my-5">
+      <h1 className="font-extrabold text-2xl text-center text-fuchsia-900">
+        {playerTransmitting} hit {playerHit}
+      </h1>
       <div className="flex shadow border-b">
         <table className="min-w-[50%]">
-          <thead className="bg-red-400" >
+          <thead className="bg-red-500" >
             <tr>
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
@@ -89,16 +102,25 @@ const PlayerScoreBoard = (hitDATA) => {
                   player={player}
                   key={player.id}
                   hits={hitDATA} 
-                  changeTotalScore={changeTotalRedScore}>
+                  changeTotalScore={changeTotalRedScore}
+                  changePlayerH={changePlayerHit}
+                  changePlayerT={changePlayerTransmitting}>
                   </RedPlayerScore>
               ))}
             </tbody>
             
           )}
+           <tr className="bg-red-500">
+            <td>
+            </td>
+            <td>
+            </td>
+            <td className="text-right font-medium text-gray-100 uppercase tracking-wider py-3 px-6">TOTAL SCORE: {totalRedScore}</td>
+          </tr>
         </table>
      
         <table className="min-w-[50%]">
-          <thead className="bg-green-400">
+          <thead className="bg-green-600">
             <tr>
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
@@ -119,10 +141,19 @@ const PlayerScoreBoard = (hitDATA) => {
                   player={player}
                   key={player.id} 
                   hits={hitDATA} 
-                  changeTotalScore={changeTotalGreenScore}></GreenPlayerScore>
+                  changeTotalScore={changeTotalGreenScore}
+                  changePlayerH={changePlayerHit}
+                  changePlayerT={changePlayerTransmitting}></GreenPlayerScore>
               ))}
             </tbody>
           )}
+          <tr className="bg-green-600">
+            <td>
+            </td>
+            <td>
+            </td>
+            <td className="text-right font-medium text-gray-100 uppercase tracking-wider py-3 px-6">TOTAL SCORE: {totalGreenScore}</td>
+          </tr>
         </table>
       </div>
     </div>

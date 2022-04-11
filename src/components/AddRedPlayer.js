@@ -42,7 +42,7 @@ const AddRedPlayer = () => {
       
       <div>
         <div className="space-x-2"> 
-          <label className="text-gray-600 text-sm font-normal">
+          <label className="text-black text-sm font-semibold">
             ID (1-15)
           </label>
           <input
@@ -55,7 +55,7 @@ const AddRedPlayer = () => {
             max="15"></input>
         </div>
         <div className="space-x-2">
-          <label className="text-gray-600 text-sm font-normal">
+          <label className="text-black text-sm font-semibold">
             Code Value
           </label>
           <input
@@ -69,12 +69,12 @@ const AddRedPlayer = () => {
         <button
           type="submit"
           onClick={savePlayer}
-          className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6">
+          className="rounded text-black font-semibold bg-lime-500 hover:bg-lime-700 py-2 px-6">
           Save
         </button>
         <button
           onClick={reset}
-          className="rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6">
+          className="rounded text-black font-semibold bg-red-600 hover:bg-red-800 py-2 px-6">
           Clear
         </button>
 

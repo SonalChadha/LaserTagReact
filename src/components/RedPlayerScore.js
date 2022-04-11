@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const RedPlayerScore = ({ player, hits, changeTotalScore }) => {
+const RedPlayerScore = ({ player, hits, changeTotalScore, changePlayerH, changePlayerT }) => {
   const [currRedScore, setCurrRedScore] = useState(0)
 
   useEffect(() => {
@@ -8,15 +8,20 @@ const RedPlayerScore = ({ player, hits, changeTotalScore }) => {
       var numberPattern = /\d+/g;
 
       var transmitNumber = String(Object.values(hits)).match(numberPattern)[0];
-
+      
       var hitNumber = String(Object.values(hits)).match(numberPattern)[1];
       if(player.id === parseInt(transmitNumber)) {
         setCurrRedScore(currRedScore + 10)
         changeTotalScore(10)
+        changePlayerT(player.codeValue)
       }
       else if(player.id === parseInt(hitNumber) && currRedScore >= 10) {
         setCurrRedScore(currRedScore - 10)
         changeTotalScore(-10)
+        changePlayerH(player.codeValue)
+      }
+      else if(player.id === parseInt(hitNumber)) {
+        changePlayerH(player.codeValue)
       }
     }
   }, [hits])

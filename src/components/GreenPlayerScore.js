@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const GreenPlayerScore = ({ player, hits, changeTotalScore}) => {
+const GreenPlayerScore = ({ player, hits, changeTotalScore, changePlayerH, changePlayerT}) => {
   const [currGreenScore, setCurrGreenScore] = useState(0)
 
   useEffect(() => {
@@ -13,10 +13,15 @@ const GreenPlayerScore = ({ player, hits, changeTotalScore}) => {
       if(player.id === parseInt(transmitNumber)) {
         setCurrGreenScore(currGreenScore + 10)
         changeTotalScore(10)
+        changePlayerT(player.codeValue)
       }
       else if(player.id === parseInt(hitNumber) && currGreenScore >= 10) {
         setCurrGreenScore(currGreenScore - 10)
         changeTotalScore(-10)
+        changePlayerH(player.codeValue)
+      }
+      else if(player.id === parseInt(hitNumber)) {
+        changePlayerH(player.codeValue)
       }
     }
   }, [hits])

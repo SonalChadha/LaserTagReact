@@ -86,7 +86,7 @@ const PlayerList = () => {
       
       <div className="flex shadow border-b">
         <table className="min-w-[50%]">
-          <thead className="bg-red-400" >
+          <thead className="bg-red-500" >
             <tr>
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID
@@ -111,7 +111,7 @@ const PlayerList = () => {
           )}
         </table>
         <table className="min-w-[50%]">
-          <thead className="bg-green-400">
+          <thead className="bg-green-600">
             <tr>
               <th className="text-left font-medium text-gray-100 uppercase tracking-wider py-3 px-6">
                 ID

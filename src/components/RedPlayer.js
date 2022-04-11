@@ -19,12 +19,12 @@ const RedPlayer = ({ player, deletePlayer }) => {
       <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
         <a
           onClick={(e, id) => editPlayer(e, player.id)}
-          className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer">
+          className="text-blue-900 hover:text-indigo-600 px-4 hover:cursor-pointer">
           Edit
         </a>
         <a
           onClick={(e, id) => deletePlayer(e, player.id)}
-          className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer">
+          className="text-blue-900 hover:text-indigo-600 hover:cursor-pointer">
           Delete
         </a>
       </td>
