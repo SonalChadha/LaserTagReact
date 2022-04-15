@@ -1,2 +1,3 @@
 Language: Python 3.10.4
 Library: ReactJS 17.0.2
+Package manager tool for JS: Node Package Manager (npm) 8.5.0 
